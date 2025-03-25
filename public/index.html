@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TreeMap</title>
+    <link rel="stylesheet" href="/styles/index.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo-container" onmouseover="showTooltip(event)" onmousemove="moveTooltip(event)" onmouseout="hideTooltip()">
+            <img src="/img/Logo.png" alt="Logo" class="logo" />
+        </div>
+        <nav>
+            <a href="/index.html">Inicio</a>
+            <a href="/Documentacion.html">Documentación</a>
+            <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="_blank">Más Información</a>
+        </nav>
+        <div class="right-logo-container">
+            <img src="/img/Logo-Uniminuto.png" alt="Right Logo" class="right-logo" />
+        </div>
+    </header>
+
+    <h1 id="titulo">TreeMap</h1>
+
+    <!-- <div id="tooltip" class="tooltip"></div> -->
+
+    <section class="content">
+        <p class="description">
+            Los árboles frutales en el corredor ecológico de Villavicencio son un
+            componente clave para la biodiversidad de la región. Este corredor
+            permite la interconexión de diferentes áreas naturales, promoviendo el
+            equilibrio entre las especies vegetales y animales, y asegurando la
+            regeneración de los ecosistemas locales. Los árboles frutales no solo
+            brindan frutos que son fuente de alimento para muchas especies de fauna,
+            como aves, mamíferos y hasta insectos, sino que también contribuyen a la
+            fertilidad del suelo y el control de la erosión. Al ser un área de
+            transición entre la zona de llanura y la Amazonía, Villavicencio alberga
+            una gran variedad de especies frutales que se adaptan a su clima cálido
+            y húmedo, formando un ecosistema de gran valor ecológico y cultural.
+            <br /><br />
+            <strong>Los siguientes árboles fueron registrados en la zona del corredor
+                ecológico conocida como Zona Villahermosa - Juan Pablo:</strong>
+        </p>
+        <div class="info">
+            <div class="info-item">
+                <span class="dot green"></span>
+                <p>Se encuentra en cosecha.</p>
+            </div>
+            <div class="info-item">
+                <span class="dot yellow"></span>
+                <p>Cosecha Variada.</p>
+            </div>
+            <div class="info-item">
+                <span class="dot red"></span>
+                <p>No se encuentra en cosecha.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+    </section>
+
+    <section class="maps">
+        <iframe class="mapa"
+            src="https://www.google.com/maps/d/u/0/embed?mid=1Vzm_wJXYMDPWVKkYCr8e1TBVoTGp12E&ehbc=2E312F&noprof=1"></iframe>
+    </section>
+
+    <div id="tooltip" class="tooltip">
+    </div>  
+
+
+    <script>
+        // Solicitud para obtener datos de árboles y crear tarjetas con tooltip
+        fetch("/arboles")
+            .then((response) => response.json())
+            .then((data) => {
+                const gallery = document.getElementById("gallery");
+                const tooltip = document.getElementById("tooltip");
+
+                data.forEach((arbol) => {
+                    const tarjeta = document.createElement("div");
+                    tarjeta.className = "card";
+                    tarjeta.innerHTML = `
+                        <div class="card-header">
+                            <p>${arbol.nombreComunArbol}</p>
+                            <span class="${arbol.statusCosecha}"></span>
+                        </div>
+                        <div class="item">
+                            <div class="card-image"><img src="${arbol.imagenArbol}" alt="${arbol.nombreComunArbol}" /></div>
+                            <div id="details">
+                                <p>Fruto: ${arbol.nombreFruto}</p>
+                                <p>Color del fruto: ${arbol.colorFruto}</p>
+                                <p>Peso promedio: ${arbol.pesoPromedio} Gramos</p>
+                            </div>
+                        </div>
+                        <p class="card-footer">${arbol.nombreCientificoArbol}</p>
+                    `;
+
+                    // Añadir eventos para mostrar el tooltip
+                    tarjeta.addEventListener("mouseover", (event) => {
+                        tooltip.innerHTML = `
+                            <strong>Nombre Común:</strong> ${arbol.nombreComunArbol}<br>
+                            <strong>Nombre Científico:</strong> ${arbol.nombreCientificoArbol}<br>
+                            <strong>División:</strong> ${arbol.divisionTaxon}<br>
+                            <strong>Clase:</strong> ${arbol.claseTaxon}<br>
+                            <strong>Familia:</strong> ${arbol.familiaTaxon}<br>
+                            <strong>Especie:</strong> ${arbol.especieTaxon}
+                        `;
+                        tooltip.style.display = "block";
+                    });
+
+                    tarjeta.addEventListener("mousemove", (event) => {
+                        tooltip.style.left = event.pageX + 15 + "px";
+                        tooltip.style.top = event.pageY + 15 + "px";
+                    });
+
+                    tarjeta.addEventListener("mouseout", () => {
+                        tooltip.style.display = "none";
+                    });
+
+                    gallery.appendChild(tarjeta);
+                });
+            })
+            .catch((error) => console.error("Error al obtener los datos:", error));
+    </script>
+
+    <script>
+        if (window.matchMedia("(max-width: 768px)").matches) {
+        const logoContainers = document.querySelectorAll(".logo-container");
+  
+        logoContainers.forEach(logo => {
+        logo.style.display = "none";
+        });
+        }
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+        const logoContainers = document.querySelectorAll(".right-logo-container");
+  
+        logoContainers.forEach(logo => {
+        logo.style.display = "none";
+        });
+        }
+    </script>
+
+    <footer>
+        <label id="CopyFinal" for="">TreeMap 2024©</label>
+    </footer>
+
+</body>
+
+</html>

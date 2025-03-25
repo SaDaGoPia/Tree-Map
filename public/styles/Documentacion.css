@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@600&family=Lexend+Exa:wght@700&family=Lexend:wght@100..900&family=Parkinsans:wght@300..800&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    background-color: #3A2A1C;
+    color: #FFF;
+    padding: 5px 25px;
+    font-family: "Lexend", serif;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.logo-container{
+    width: 70px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50px;
+    position: relative;
+}
+
+.right-logo-container {
+    width: 80px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.logo, .right-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border: 2px solid #FFF; 
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0%;
+}
+
+.logo-container:hover::after {
+    width: 60px; 
+    height: 60px; 
+    top: 50%;
+    left: 50%;
+    opacity: 100%;
+}
+
+.right-logo-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 2px solid #FFF; 
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0%;
+}
+
+.right-logo-container:hover::after {
+    width: 78px;
+    height: 55px; 
+    top: 50%;
+    left: 50%;
+    opacity: 100%
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: #FFF;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%; 
+    right: 50%; 
+    bottom: 0;
+    height: 2px;
+    background-color: #FFF;
+    transition: left 0.3s ease, right 0.3s ease; 
+}
+
+nav a:hover::after {
+    left: 0; 
+    right: 0; 
+}
+
+/* Contenido principal */
+
+.content {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.documento{
+    width: 70%;
+    height: 520px;
+}
+
+footer
+{
+    height: 3rem;
+    margin-top: 2rem;
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    align-items: center;
+    justify-content: center; 
+    background-color: #3A2A1C;
+    color: #FFF;
+    text-align: center;
+    font-family: "Lexend", serif;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+#CopyFinal
+{
+    color: #ccc;
+}
+
+/* DISEÑO RESPONSIVE */
+@media (max-width: 768px) {
+    #gallery {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .maps .mapa {
+        width: 95%; 
+        height: 300px; 
+        padding: 0; 
+    }
+
+    header {
+        height: 3rem;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px; 
+        font-size: 14px;
+    }
+
+    #titulo
+    {
+        font-size: 5rem;
+    }
+
+    .content {
+        width: 95%; 
+        padding: 10px; 
+    }
+
+    .card-image {
+        height: 150px; 
+    }
+
+    #details
+    {
+        font-size: 14px;
+    }
+
+    .logo-container,
+    .right-logo-container {
+        width: 50px; 
+        height: 50px;
+    }
+
+    .description {
+        font-size: 14px; 
+    }
+
+    .info {
+        gap: 10px; 
+    }
+
+    .card-footer {
+        font-size: 12px; 
+    }
+
+    .documento{
+        height: 670px;
+        width: 90%;
+    }
+}

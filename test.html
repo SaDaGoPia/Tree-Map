@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tooltip</title>
+<style>
+  /* Estilo para el div principal */
+  .hover-box {
+    width: 150px;
+    height: 100px;
+    background-color: #d3d3d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #999;
+    cursor: pointer;
+  }
+
+  /* Estilo para el tooltip */
+  .tooltip {
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    display: none;
+    max-width: 200px;
+    pointer-events: none;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<!-- Div que activa el tooltip -->
+<div class="hover-box" onmouseover="showTooltip(event)" onmousemove="moveTooltip(event)" onmouseout="hideTooltip()">
+  Pasa el mouse aquí
+</div>
+
+<!-- Tooltip (oculto por defecto) -->
+<div id="tooltip" class="tooltip">
+  <strong>Nombre Común:</strong> Ejemplo<br>
+  <strong>Nombre Científico:</strong> Ejemplus scientificus<br>
+  <strong>División:</strong> Ejemplo División<br>
+  <strong>Clase:</strong> Ejemplo Clase<br>
+  <strong>Familia:</strong> Ejemplo Familia<br>
+  <strong>Especie:</strong> Ejemplo Especie
+</div>
+
+<!-- JavaScript para controlar la posición del tooltip -->
+<script>
+  const tooltip = document.getElementById("tooltip");
+
+  function showTooltip(event) {
+    tooltip.style.display = "block";
+  }
+
+  function moveTooltip(event) {
+    tooltip.style.left = event.pageX + 15 + "px";
+    tooltip.style.top = event.pageY + 15 + "px";
+  }
+
+  function hideTooltip() {
+    tooltip.style.display = "none";
+  }
+</script>
+
+</body>
+</html>

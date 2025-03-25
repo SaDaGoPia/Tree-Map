@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentación</title>
+    <link rel="stylesheet" href="/styles/Documentacion.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo-container" onmouseover="showTooltip(event)" onmousemove="moveTooltip(event)" onmouseout="hideTooltip()">
+            <img src="/img/Logo.png" alt="Logo" class="logo" />
+        </div>
+        <nav>
+            <a href="/index.html">Inicio</a>
+            <a href="/Documentacion.html">Documentación</a>
+            <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="_blank">Más Información</a>
+        </nav>
+        <div class="right-logo-container">
+            <img src="/img/Logo-Uniminuto.png" alt="Right Logo" class="right-logo" />
+        </div>
+    </header>
+
+    <section class="content">
+        <!-- <embed class="documento" src="/PLANTILLA - PROYECTO PROCEDIMIENTOS.pdf" type=""> -->
+        <iframe class="documento" src="/PLANTILLA - PROYECTO PROCEDIMIENTOS.pdf" frameborder="0"></iframe>
+    </section>
+
+    <script>
+        if (window.matchMedia("(max-width: 768px)").matches) {
+        const logoContainers = document.querySelectorAll(".logo-container");
+  
+        logoContainers.forEach(logo => {
+        logo.style.display = "none";
+        });
+        }
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+        const logoContainers = document.querySelectorAll(".right-logo-container");
+  
+        logoContainers.forEach(logo => {
+        logo.style.display = "none";
+        });
+        }
+    </script>    
+
+    <footer>
+        <label id="CopyFinal" for="">TreeMap 2024©</label>
+    </footer>
+
+</body>
+
+</html>
